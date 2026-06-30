@@ -1,0 +1,8 @@
+/Users/danielreis/Documents/projetos/ikon/bff-ikon-brasil/src/main/java/br/com/ikonbrasil/bff/BffIkonBrasilApplication.java
+/Users/danielreis/Documents/projetos/ikon/bff-ikon-brasil/src/main/java/br/com/ikonbrasil/bff/autenticacao/infraestrutura/rest/AuthBffController.java
+/Users/danielreis/Documents/projetos/ikon/bff-ikon-brasil/src/main/java/br/com/ikonbrasil/bff/cadastro/infraestrutura/rest/CadastroBffController.java
+/Users/danielreis/Documents/projetos/ikon/bff-ikon-brasil/src/main/java/br/com/ikonbrasil/bff/cep/infraestrutura/rest/CepController.java
+/Users/danielreis/Documents/projetos/ikon/bff-ikon-brasil/src/main/java/br/com/ikonbrasil/bff/compartilhado/infraestrutura/configuracao/ConfiguracaoHttp.java
+/Users/danielreis/Documents/projetos/ikon/bff-ikon-brasil/src/main/java/br/com/ikonbrasil/bff/compartilhado/infraestrutura/configuracao/ConfiguracaoOpenApi.java
+/Users/danielreis/Documents/projetos/ikon/bff-ikon-brasil/src/main/java/br/com/ikonbrasil/bff/compartilhado/infraestrutura/configuracao/ConfiguracaoSeguranca.java
+/Users/danielreis/Documents/projetos/ikon/bff-ikon-brasil/src/main/java/br/com/ikonbrasil/bff/compartilhado/infraestrutura/proxy/ProxyHttp.java

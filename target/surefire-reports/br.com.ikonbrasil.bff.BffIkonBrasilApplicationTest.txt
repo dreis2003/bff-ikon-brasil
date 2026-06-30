@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: br.com.ikonbrasil.bff.BffIkonBrasilApplicationTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.672 s -- in br.com.ikonbrasil.bff.BffIkonBrasilApplicationTest

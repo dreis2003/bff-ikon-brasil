@@ -1,0 +1,285 @@
+{
+  "info": {
+    "name": "bff-ikon-brasil",
+    "description": "Colecao para teste manual do BFF da plataforma IKO Nakamura Brasil.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{accessToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "bffBaseUrl",
+      "value": "http://localhost:8082"
+    },
+    {
+      "key": "accessToken",
+      "value": ""
+    },
+    {
+      "key": "refreshToken",
+      "value": ""
+    },
+    {
+      "key": "filialId",
+      "value": ""
+    },
+    {
+      "key": "filiadoId",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Login",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{bffBaseUrl}}/api/auth/login",
+          "host": [
+            "{{bffBaseUrl}}"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"admin@ikonbrasil.com.br\",\n  \"senha\": \"admin123\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const response = pm.response.json();",
+              "pm.collectionVariables.set('accessToken', response.accessToken);",
+              "pm.collectionVariables.set('refreshToken', response.refreshToken);",
+              "pm.environment.set('accessToken', response.accessToken);",
+              "pm.environment.set('refreshToken', response.refreshToken);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Me",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{bffBaseUrl}}/api/me",
+          "host": [
+            "{{bffBaseUrl}}"
+          ],
+          "path": [
+            "api",
+            "me"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Listar filiais",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{bffBaseUrl}}/api/filiais",
+          "host": [
+            "{{bffBaseUrl}}"
+          ],
+          "path": [
+            "api",
+            "filiais"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Listar usuarios HONBU",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{bffBaseUrl}}/api/usuarios",
+          "host": [
+            "{{bffBaseUrl}}"
+          ],
+          "path": [
+            "api",
+            "usuarios"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Criar usuario HONBU",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{bffBaseUrl}}/api/usuarios",
+          "host": [
+            "{{bffBaseUrl}}"
+          ],
+          "path": [
+            "api",
+            "usuarios"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Responsavel Dojo Centro\",\n  \"email\": \"responsavel.centro@ikonbrasil.com.br\",\n  \"senha\": \"responsavel123\",\n  \"perfil\": \"FILIAL_RESPONSAVEL\",\n  \"filialId\": \"{{filialId}}\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Criar filial",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{bffBaseUrl}}/api/filiais",
+          "host": [
+            "{{bffBaseUrl}}"
+          ],
+          "path": [
+            "api",
+            "filiais"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Dojo Centro\",\n  \"codigo\": \"CENTRO\",\n  \"responsavel\": \"Responsavel Centro\",\n  \"cidade\": \"Curitiba\",\n  \"estado\": \"PR\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const response = pm.response.json();",
+              "if (response.id) {",
+              "  pm.collectionVariables.set('filialId', response.id);",
+              "  pm.environment.set('filialId', response.id);",
+              "}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Criar filiado",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{bffBaseUrl}}/api/filiados",
+          "host": [
+            "{{bffBaseUrl}}"
+          ],
+          "path": [
+            "api",
+            "filiados"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nomeCompleto\": \"Joao Nakamura\",\n  \"dataNascimento\": \"1990-01-10\",\n  \"cpf\": \"123.456.789-00\",\n  \"email\": \"joao@email.com\",\n  \"telefone\": \"41999999999\",\n  \"sexo\": \"MASCULINO\",\n  \"filialId\": \"{{filialId}}\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const response = pm.response.json();",
+              "if (response.id) {",
+              "  pm.collectionVariables.set('filiadoId', response.id);",
+              "  pm.environment.set('filiadoId', response.id);",
+              "}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Listar filiados",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{bffBaseUrl}}/api/filiados",
+          "host": [
+            "{{bffBaseUrl}}"
+          ],
+          "path": [
+            "api",
+            "filiados"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Atualizar filiado",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{bffBaseUrl}}/api/filiados/{{filiadoId}}",
+          "host": [
+            "{{bffBaseUrl}}"
+          ],
+          "path": [
+            "api",
+            "filiados",
+            "{{filiadoId}}"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nomeCompleto\": \"Joao Silva Nakamura\",\n  \"dataNascimento\": \"1990-01-10\",\n  \"cpf\": \"123.456.789-00\",\n  \"email\": \"joao.silva@email.com\",\n  \"telefone\": \"41999999999\",\n  \"sexo\": \"MASCULINO\",\n  \"filialId\": \"{{filialId}}\"\n}"
+        }
+      }
+    }
+  ]
+}

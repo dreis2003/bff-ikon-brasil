@@ -1,0 +1,11 @@
+br/com/ikonbrasil/bff/compartilhado/infraestrutura/proxy/ProxyHttp.class
+br/com/ikonbrasil/bff/autenticacao/infraestrutura/rest/AuthBffController.class
+br/com/ikonbrasil/bff/compartilhado/infraestrutura/configuracao/ConfiguracaoOpenApi.class
+br/com/ikonbrasil/bff/compartilhado/infraestrutura/configuracao/ConfiguracaoHttp.class
+br/com/ikonbrasil/bff/cep/infraestrutura/rest/CepController$EnderecoCepResponse.class
+br/com/ikonbrasil/bff/cadastro/infraestrutura/rest/CadastroBffController.class
+br/com/ikonbrasil/bff/compartilhado/infraestrutura/configuracao/ConfiguracaoSeguranca$1.class
+br/com/ikonbrasil/bff/cep/infraestrutura/rest/CepController.class
+br/com/ikonbrasil/bff/BffIkonBrasilApplication.class
+br/com/ikonbrasil/bff/compartilhado/infraestrutura/configuracao/ConfiguracaoSeguranca.class
+br/com/ikonbrasil/bff/cep/infraestrutura/rest/CepController$ViaCepResponse.class
