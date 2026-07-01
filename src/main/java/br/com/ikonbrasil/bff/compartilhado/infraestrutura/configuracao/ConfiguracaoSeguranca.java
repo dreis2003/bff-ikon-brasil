@@ -21,9 +21,15 @@ import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 @Configuration
 public class ConfiguracaoSeguranca {
+
+    private static final List<String> ORIGENS_OFICIAIS_PLATAFORMA = List.of(
+            "https://gestao-hml.ikon-br.com.br",
+            "https://gestao.ikon-br.com.br"
+    );
 
     @Bean
     WebSecurityCustomizer webSecurityCustomizer() {
@@ -79,7 +85,7 @@ public class ConfiguracaoSeguranca {
     @Bean
     CorsConfigurationSource corsConfigurationSource(@Value("${ikon.cors.allowed-origins}") String allowedOrigins) {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.stream(allowedOrigins.split(",")).map(String::trim).toList());
+        configuration.setAllowedOrigins(origensPermitidas(allowedOrigins));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type", "Accept"));
         configuration.setExposedHeaders(List.of("Location"));
@@ -96,11 +102,21 @@ public class ConfiguracaoSeguranca {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins(Arrays.stream(allowedOrigins.split(",")).map(String::trim).toArray(String[]::new))
+                        .allowedOrigins(origensPermitidas(allowedOrigins).toArray(String[]::new))
                         .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
                         .allowedHeaders("Authorization", "Content-Type", "Accept")
                         .exposedHeaders("Location");
             }
         };
+    }
+
+    private static List<String> origensPermitidas(String allowedOrigins) {
+        return Stream.concat(
+                        Arrays.stream(allowedOrigins.split(",")).map(String::trim),
+                        ORIGENS_OFICIAIS_PLATAFORMA.stream()
+                )
+                .filter(origem -> !origem.isBlank())
+                .distinct()
+                .toList();
     }
 }
