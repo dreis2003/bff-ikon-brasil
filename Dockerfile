@@ -16,4 +16,7 @@ COPY --from=build /app/target/*.jar app.jar
 USER spring:spring
 EXPOSE 8082
 
+HEALTHCHECK --interval=30s --timeout=5s --start-period=40s --retries=3 \
+  CMD wget -qO- http://localhost:8082/actuator/health/readiness | grep -q '"status":"UP"' || exit 1
+
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]

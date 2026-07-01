@@ -11,7 +11,21 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info
+        include: health,info,metrics
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: when_authorized
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: ${spring.application.name}
+    description: BFF da plataforma IKO Nakamura Brasil
+    version: 0.0.1-SNAPSHOT
 
 ikon:
   auth:
