@@ -10,7 +10,7 @@ permissions:
   packages: write
 
 env:
-  IMAGE_NAME: ghcr.io/dreis2003/ms-auth
+  IMAGE_NAME: ghcr.io/dreis2003/bff-ikon-brasil
 
 jobs:
   build-and-push:
