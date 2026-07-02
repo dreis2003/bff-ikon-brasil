@@ -1,0 +1,10 @@
+ikon:
+  servicos:
+    ms-auth-url: ${MS_AUTH_URL:http://ms-auth:8081}
+    ms-cadastro-filiados-url: ${MS_CADASTRO_FILIADOS_URL:http://ms-cadastro-filiados:8080}
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:https://gestao-hml.ikon-br.com.br}
+
+logging:
+  level:
+    br.com.ikonbrasil.bff: INFO
